@@ -1,0 +1,111 @@
+<main>
+	<div class="container">
+		<div class="row">
+			<div class="col-12">
+				<canvas id="maleChart"></canvas>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-12">
+				<canvas id="femaleChart"></canvas>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-12">
+				<canvas id="bothChart"></canvas>
+			</div>
+		</div>
+	</div>
+</main>
+
+<script>
+	const data = <%- JSON.stringify(data) %>;
+
+	{
+	    let datasets = [];
+	    let maleData = [];
+
+	    data.forEach(range => {
+	        maleData = maleData.concat(range.male.length);
+	    });
+
+	    const ctx = document.getElementById('maleChart');
+
+	    new Chart(ctx, {
+	        type: 'bar',
+	        data: {
+	            labels: ['0-40','40-50','50-60','60-70','70-80', '80-90'],
+	            datasets: [
+	                {
+	                    label: "Male",
+	                    data: maleData,
+	                    borderColor: "#6ea8fe",
+	                    backgroundColor: "#6ea8fe"
+	                }
+	            ]
+	        },
+	        options: {
+	            indexAxis: 'y',
+	        }
+	    });
+	}
+
+	{
+	    let datasets = [];
+	    let femaleData = [];
+
+	    data.forEach(range => {
+	        femaleData = femaleData.concat(range.female.length);
+	    });
+
+	    const ctx = document.getElementById('femaleChart');
+
+	    new Chart(ctx, {
+	        type: 'bar',
+	        data: {
+	            labels: ['0-40','40-50','50-60','60-70','70-80', '80-90'],
+	            datasets: [
+	                {
+	                    label: "Female",
+	                    data: femaleData,
+	                    borderColor: "#ea868f",
+	                    backgroundColor: "#ea868f"
+	                }
+	            ]
+	        },
+	        options: {
+	            indexAxis: 'y',
+	        }
+	    });
+	}
+
+
+	{
+	    let datasets = [];
+	    let bothData = [];
+
+	    data.forEach(range => {
+	        bothData = bothData.concat(range.both.length);
+	    });
+
+	    const ctx = document.getElementById('bothChart');
+
+	    new Chart(ctx, {
+	        type: 'bar',
+	        data: {
+	            labels: ['0-40','40-50','50-60','60-70','70-80', '80-90'],
+	            datasets: [
+	                {
+	                    label: "Both",
+	                    data: bothData,
+	                    borderColor: "#842029",
+	                    backgroundColor: "#842029"
+	                }
+	            ]
+	        },
+	        options: {
+	            indexAxis: 'y',
+	        }
+	    });
+	}
+</script>
